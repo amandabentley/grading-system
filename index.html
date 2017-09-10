@@ -21,42 +21,35 @@
         <br>
         <p>Your Letter Grades Are:</p>
         <div id="calculated-grades"></div>
-        <br>
-        <p>Your Average Grade Is:</p>
-        <div id="avgGrade"></div>
-        <br>
-        <p>Your Final Grade Is:</p>
-        <div id="finalGrade"></div>
   </div> <!-- End of wrapper div -->
 
   <script>
 
-   $(function() { // jQuery Document Ready (...the page finished loading.)
+   $(function() {
 
-          $("#grades").keyup(function() { // keyup works best for doing realtime calculations...
+          $("#grades").keyup(function() { // keyup is best for real time calculations
 
               // Get the grades into an array
               var grades = $("#grades").val().trim(); // Does not work without the "trim"
               grades = grades.split(/\s+/);
               var message = ''; // Start with no message.
 
-              // Loop through all the grades...
+              // start of for loop...
               for (var i in grades) {
 
-                  // Convert the numbers into the letters here...
+                  // Convert the numbers into the letters
                   var test_grade = grades[i];
                   var grade = '';
 
                   console.log('grades.length '+ grades.length);
                   console.log('test_grade.length '+ test_grade.length);
 
-                  if ((grades.length == 1) && (test_grade.length == 0)) { // The pressed the shift key or spacebar, just ignore...
-                      //
+                  if ((grades.length == 1) && (test_grade.length == 0)) { // Ignore shift or spacebar entries
                       break;
-                  } else if (isNaN(test_grade) && (test_grade.length > 0)) { // Test for letters like "A" but ignore actual "NaN"
-                      message = "<strong>ERROR</strong> - Please only enter numbers.";
+                  } else if (isNaN(test_grade) && (test_grade.length > 0)) { // Entries that are non-numerical
+                      message = "<strong>ERROR</strong> - Please only enter numerical value between 0 & 100.";
                       break;
-                  } else if (test_grade < 0) {
+                  } else if (test_grade < 0) { //Entries below zero - invalid
                       message = "<strong>ERROR</strong> - Valid grades are 0 - 100.";
                       break;
                   } else if ((test_grade < 60) && (test_grade >= 0)) {
@@ -69,20 +62,17 @@
                       grade = "B";
                   } else if (test_grade <= 100) {
                       grade = "A";
-                  } else if (test_grade > 100) {
+                  } else if (test_grade > 100) { // Entries over 100 - invalid
                       message = "<strong>ERROR</strong> - Valid grades are 0 - 100.";
                       break;
                   }
                   message += grade + " ";
 
-              } // end loop through array...
+              } // end of loop
 
               $("#calculated-grades").html(message);
-          
           });
-
    });
-
   </script>
 
 </body>
