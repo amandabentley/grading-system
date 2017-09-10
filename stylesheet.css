@@ -28,3 +28,13 @@ p {
   font-weight: bold;
   font-size: 18px;
 }
+
+#calculated-grades {
+  font-size:1.3em;
+  font-weight:bold;
+  line-height:1.8em;
+}
+
+#grades {
+  font-size: 1.1em;
+}
